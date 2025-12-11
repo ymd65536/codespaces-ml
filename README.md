@@ -102,6 +102,124 @@ GitHub Codespacesは、クラウド上で開発環境を提供するサービス
 
 ## ハンズオン
 
+今回のおおまかな流れは以下の通りです。
+
+1. 準備体操：PythonとJupyterのバージョン確認、Hello Worldの実行
+2. Jupyter Notebookを起動してみる
+3. GitHub Copilotを使ってみる
+
+### 準備体操
+
+まずはPythonのバージョンとインストール先を確認してみましょう。ターミナルで以下のコマンドを実行します。
+
+```bash
+python --version && which python
+# Python 3.12.1
+# /home/codespace/.python/current/bin/python
+```
+
+とりあえず、Hello Worldを実行します。
+
+```bash
+python -c "print('Hello, World')"
+```
+
+Jupyterのバージョンを確認します。
+
+```bash
+jupyter --version
+```
+
+実行結果は以下の通りです。
+
+```text
+Selected Jupyter core packages...
+IPython          : 9.2.0
+ipykernel        : 6.29.5
+ipywidgets       : 8.1.2
+jupyter_client   : 8.6.3
+jupyter_core     : 5.7.2
+jupyter_server   : 2.15.0
+jupyterlab       : 4.4.2
+nbclient         : 0.10.2
+nbconvert        : 7.16.6
+nbformat         : 5.10.4
+notebook         : not installed
+qtconsole        : not installed
+traitlets        : 5.14.3
+```
+
+### Jupyter Notebookを起動してみる
+
+ターミナル上でもJupyter Notebookを起動できますが、CodespacesにはJupyter Notebookを起動するためのGUIが用意されています。厳密にはipynbファイルを開くとnotebookのインターフェイスが起動します。
+
+新規ファイルの作成で`New File`をクリックし、ファイル名を`hello.ipynb`として保存します。
+
+`hello.ipynb`を開くと次のとおり、Jupyter Notebookのインターフェイスが起動します。
+
+![Create New File](./images/codespace-ml3.png)
+
+Jupyter Notebookはセルという単位でコードを実行できます。同じノートブックの範囲内であれば、変数や関数を共有できます。
+`+コード`をクリックしてコードセルを追加し、以下のコードを入力して実行してみましょう。
+
+```python
+greeting = "Hello, Jupyter on Codespaces!"
+print(greeting)
+```
+
+実行結果は以下の通りです。セルの下に結果が表示されます。
+
+```text
+Hello, Jupyter on Codespaces!
+```
+
+### GitHub Copilotを使ってみる
+
+`生成`というボタンが表示されている場合はGitHub Copilotを使ってコードを生成できます。試しに以下のように指示を入力して実行みてください。
+
+```python
+# 2つの数値の和を計算する関数
+def add_numbers(a, b):
+```
+
+実行すると以下のようにコードが生成されます。同意します。
+
+![GitHub Copilot](./images/codespace-ml4.png)
+
+次に、以下のコードを追加して実行してみましょう。
+
+```python
+# 2つの数値の和を計算する関数
+def add_numbers(a, b):
+    return a + b
+
+f" 5 + 7 = {add_numbers(5, 7)}"
+# f文字列を使って結果を表示
+```
+
+あるいは、以下のようにコードを実行しても同じ結果が得られます。
+
+```python
+result = add_numbers(5, 7)
+print("5 + 7 =", result)
+```
+
+実行結果は以下の通りです。
+
+```text
+' 5 + 7 = 12'
+```
+
+### オプション：notebooksのディレクトリにあるサンプルを確認する
+
+今回のハンズオンで作成したCodespacesには`notebooks`ディレクトリがあり、いくつかのサンプルノートブックが用意されています。興味のある方は確認してみてください。
+
+### おまけ：vscode-data-wrangler 
+
+今回はJupyter環境を使って簡単なコードを実行しました。もっと簡単にデータ分析を実行したい場合は、[vscode-data-wrangler](https://github.com/microsoft/vscode-data-wrangler)という拡張機能を使う方法もあります。
+
+vscode-data-wranglerは、VSCode上でデータの前処理や可視化を簡単に行うための拡張機能です。GUIベースで操作できるため、コードを書かずにデータ分析を行いたい場合に便利です。もちろん、GitHub Codespaces上でも利用できます。
+
 ## 思うところ
 
 実際に触ってみましたが、非常に簡単にJupyter環境を構築できました。
@@ -117,6 +235,11 @@ GitHub Codespacesは、クラウド上で開発環境を提供するサービス
 長々と書きましたが、要は使い分けが重要かなというところですが、デバッグやちょっとした試験的な実験を行うにはCodespaces上のJupyter環境は非常に便利だと思います。
 
 ## まとめ
+
+GitHub Codespaces上でJupyter環境を構築してみましたが、最小構成で使う場合においては非常に簡単で便利でした。
+ただし、実際に機械学習を行う場合は、データの所在やMLパイプラインの構成によっては他のクラウドサービスを使う方が良い場合もあると思います。
+
+データの所在を気にされる場合やMLパイプラインの構成を気にされる場合は、他のクラウドサービスを使うことを検討してしまいそうですが、そうでない場合、ちょっとした試験的な実験やデバッグを行う場合にはCodespaces上のJupyter環境は非常に便利です。
 
 ## 余談：Jupyter環境を構築する方法（いくつか紹介）
 
