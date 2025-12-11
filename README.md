@@ -189,10 +189,6 @@ def add_numbers(a, b):
 次に、以下のコードを追加して実行してみましょう。
 
 ```python
-# 2つの数値の和を計算する関数
-def add_numbers(a, b):
-    return a + b
-
 f" 5 + 7 = {add_numbers(5, 7)}"
 # f文字列を使って結果を表示
 ```
